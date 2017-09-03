@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom'
 
 class BookShelf extends Component{
 
+    componentDidMount(){
 
+    }
     render(){
         return (
             <div className="list-books">
@@ -163,7 +165,7 @@ class BookShelf extends Component{
                 </div>
               </div>
               <div className="open-search">
-                <Link to="/Search">Add abook</Link>
+                <Link to="/SearchBooks">Add abook</Link>
               </div>
             </div>
         )
