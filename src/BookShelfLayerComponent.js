@@ -12,7 +12,7 @@ class BooKShelfLayer extends Component{
           <h2 className="bookshelf-title">{camelcaseToText(temp)}</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
-              {typeOfShelf[temp].map((book)=>{return <li key={book.id}><Book book={book}/></li>})}
+              {typeOfShelf[temp].map((book)=>{return <li key={book.id}><Book book={book} bookFactory={this.props.bookFactory}/></li>})}
             </ol>
           </div>
         </div>

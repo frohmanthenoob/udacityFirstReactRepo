@@ -13,7 +13,7 @@ class BookShelf extends Component{
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <BookShelfLayer books={this.props.books}/>
+          <BookShelfLayer books={this.props.books} bookFactory={this.props.bookFactory}/>
         </div>
         <div className="open-search">
           <Link to="/SearchBooks">Add abook</Link>
