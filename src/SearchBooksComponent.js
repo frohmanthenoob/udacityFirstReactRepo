@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Autocomplete from 'react-autocomplete'
 import { SearchTerm } from './utils'
-import * as BooksAPI from './BooksAPI'
 import Book from './BookComponent'
 import { BookActions } from './utils'
 /*
