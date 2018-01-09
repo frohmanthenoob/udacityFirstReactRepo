@@ -1,11 +1,9 @@
-import React,{Component} from 'react'
-import {Link} from 'react-router-dom'
-import BookShelfLayer from './BookShelfLayerComponent'
+import React,{ Component } from 'react'
+import { Link } from 'react-router-dom'
+import BookShelfLayer from './BookShelfLayer'
 
 class BookShelf extends Component{
-  componentDidMount(){
-      
-  }
+
   render(){
     return (
       <div className="list-books">

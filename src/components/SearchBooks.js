@@ -1,25 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Autocomplete from 'react-autocomplete'
-import { SearchTerm } from './utils'
-import Book from './BookComponent'
-import { BookActions } from './utils'
-/*
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
-*/
+import { SearchTerm, BookActions } from '../utils'
+import Book from './Book'
 
 class SearchBooks extends Component{
   
     state = {
       books:[],
       value:''
-    }
-
-    componentDidMount(){
-      
     }
 
     checkBooks(){
@@ -41,7 +30,10 @@ class SearchBooks extends Component{
 
     asyncUpdataBooks(){
       //performance reason
-      this.updataBooks(this.state.value)
+      //prevent search empty value
+      if(this.state.value !== ""){
+        this.updataBooks(this.state.value)
+      }
     }
 
     render(){
@@ -50,16 +42,7 @@ class SearchBooks extends Component{
             <div className="search-books">
               <div className="search-books-bar">
                 <Link to="/" className="close-search" >Close</Link>
-                <div className="search-books-input-wrapper">
-                  {/*
-                    NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                    You can find these search terms here:
-                    https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                    
-                    However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                    you don't find a specific author or title. Every search is limited by search terms.
-                  */}
-                  
+                <div className="search-books-input-wrapper">           
                   <Autocomplete
                   wrapperStyle={ {} }
                   items={SearchTerm.map(myItem=>{return {id:myItem,label:myItem}})}
@@ -88,14 +71,14 @@ class SearchBooks extends Component{
               <div className="search-books-results">
                 <ol className="books-grid">
                   {
-                    this.state.books.map((book)=>{return <li key={book.id}><Book book={book} updateViewMethod={this.checkBooks.bind(this)}bookFactory={this.props.bookFactory}/></li>})
+                    this.state.books.map((book)=>{return <li key={book.id}><Book book={book} updateViewMethod={this.checkBooks.bind(this)} bookFactory={this.props.bookFactory}/></li>})
                   }
                 </ol>
               </div>
             </div>
-            
           </div>
         )
     }
 }
+
 export default SearchBooks

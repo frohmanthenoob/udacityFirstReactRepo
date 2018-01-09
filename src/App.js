@@ -1,8 +1,9 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import SearchBooks from './SearchBooksComponent'
-import BookShelf from './BookShelfComponent'
+import { Route, Switch } from 'react-router-dom'
+import * as BooksAPI from './api/BooksAPI'
+import SearchBooks from './components/SearchBooks'
+import BookShelf from './components/BookShelf'
+import NoMatch from './components/NoMatch'
 import './App.css'
 import { BookActions } from './utils'
 
@@ -10,6 +11,7 @@ class BooksApp extends React.Component {
   state = {
     books:[]
   }
+
   componentDidMount(){
     BooksAPI.getAll().then((books)=>{
       this.setState({books})
@@ -17,7 +19,6 @@ class BooksApp extends React.Component {
   }
 
   bookFactory = (action,{book=null,shelf="",query="",maxResults=100,bookid=""}) => {
-    //{book=null,shelf="",query="Robotics",maxResults=20,bookid="QHUlp1tI-JwC"}
     if(action===BookActions.Get){
       return BooksAPI.get(bookid)
     } else if (action===BookActions.GetAll) {
@@ -32,11 +33,11 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path="/SearchBooks" render={()=>{return <SearchBooks books={this.state.books} bookFactory={this.bookFactory.bind(this)} />}} />
-        <Route exact path="/" render={ () => {
-            return <BookShelf books={this.state.books} bookFactory={this.bookFactory.bind(this)} />
-          }
-        } />
+        <Switch>
+          <Route path="/SearchBooks" render={()=>{return <SearchBooks books={this.state.books} bookFactory={this.bookFactory.bind(this)} />}} />
+          <Route exact path="/" render={ () => { return <BookShelf books={this.state.books} bookFactory={this.bookFactory.bind(this)} />}} />
+          <Route component={ NoMatch }/>>
+        </Switch>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Book from './BookComponent'
-import {camelcaseToText, classedByProperty} from './utils'
+import Book from './Book'
+import { camelcaseToText, classedByProperty } from '../utils'
 class BooKShelfLayer extends Component{
 
   makeViewArray(arr){
